@@ -1,0 +1,38 @@
+<div class="dashboard-container">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened>
+      <div class="user-info">
+        <img [src]="user.avatar" alt="User Avatar" class="avatar">
+        <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+        <div class="user-email">{{ user.email }}</div>
+      </div>
+      <mat-nav-list>
+        <mat-list-item (click)="navigateToDashboard()"
+          [ngStyle]="{'background-color': selected === 'Dashboard' ? '#edf4ff' : ''}">
+          <mat-icon style="margin-right: 5px;">
+            space_dashboard
+          </mat-icon>
+          Dashboard
+        </mat-list-item>
+        <mat-list-item (click)="openCreateTaskDialog()"
+          [ngStyle]="{'background-color': selected === 'Create' ? '#edf4ff' : ''}">
+          <mat-icon style="margin-right: 5px;">
+            add_circle
+          </mat-icon>
+          Create Task
+        </mat-list-item>
+        <mat-list-item (click)="doLogOut()"
+          [ngStyle]="{'background-color': selected === 'Logout' ? '#edf4ff' : ''}">
+          <mat-icon style="margin-right: 5px;">
+            logout
+          </mat-icon>
+          Logout
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- task-dashboard component and in case of other components -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

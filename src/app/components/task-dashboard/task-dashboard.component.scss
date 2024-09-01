@@ -1,0 +1,240 @@
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tasks-list-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.main-container {
+  flex: 1;
+  min-width: 250px;
+}
+
+.example-list {
+  background: rgba(251, 243, 243, 0.2); /* Saydam beyaz arka plan */
+  backdrop-filter: blur(5px); /* Bulanıklık efekti */
+  border-radius: 8px;
+  height: 65vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+  overflow-y: scroll;
+}
+
+/* Scroll bar'ın genel stili */
+.example-list::-webkit-scrollbar {
+  width: 8px; /* Scroll bar genişliği */
+}
+
+/* Scroll bar'ın arka planı */
+.example-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); /* Hafif şeffaf arka plan */
+  border-radius: 8px;
+}
+
+/* Scroll bar'ın hareket eden kısmı */
+.example-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* Koyu gri renk */
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* İçeriden beyaz bir hat */
+}
+
+/* Scroll bar üzerine geldiğinde stil */
+.example-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4); /* Biraz daha koyu gri */
+}
+
+.task-box {
+  padding: 10px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.3); /* Hafif saydam beyaz */
+  backdrop-filter: blur(5px); /* Daha hafif bulanıklık */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Saydam sınır */
+  border-radius: 8px;
+  cursor: move;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Gölgeli cam efekti */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.task-box-completed{
+  padding: 10px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.3); /* Hafif saydam beyaz */
+  backdrop-filter: blur(5px); /* Daha hafif bulanıklık */
+  border: 1px solid rgba(185, 16, 16, 0.5); /* Saydam sınır */
+  border-radius: 8px;
+  cursor: move;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Gölgeli cam efekti */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.taskTitle {
+  font-weight: 400;
+  font-size: large;
+  color: rgba(13, 153, 213, 0.8); /* Siyah tonunda şeffaf metin */
+}
+
+.taskAssigned {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+@media (max-width: 1200px) {
+  .tasks-list-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .example-list {
+    height: 220px;
+  }
+  .filter-sort-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px; /* SearchBox ve Sorting arasında boşluk */
+  }
+}
+
+@media (max-width: 768px) {
+  .tasks-list-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .example-list {
+    height: 220px;
+  }
+  .filter-sort-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px; /* SearchBox ve Sorting arasında boşluk */
+  }
+
+  .main-container {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+
+.iconSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host ::ng-deep .material-icons {
+  font-size: 20px;
+}
+.searchBox {
+  width: 100%;
+}
+.filter-sort-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px; /* SearchBox ve Sorting arasında boşluk */
+}
+
+.searchBox,
+.mat-form-field {
+  background: rgba(255, 255, 255, 0.3); /* Hafif saydam beyaz arka plan */
+  backdrop-filter: blur(8px); /* Bulanıklık efekti */
+  border-radius: 8px;
+  padding: 8px; /* İç boşluk */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
+  transition: all 0.3s ease; /* Geçiş animasyonu */
+}
+
+.mat-form-field:hover,
+.searchBox:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Hover efekti */
+  transform: translateY(-2px); /* Hover sırasında hafif yukarı hareket */
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: rgba(13, 153, 213, 0.8); /* Etkin olduğunda mavi renk */
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: rgba(
+    13,
+    153,
+    213,
+    0.8
+  ); /* Etkin olduğunda mavi ripple efekti */
+}
+
+.searchBox input,
+.mat-select {
+  color: #333; /* Yazı rengi */
+  font-size: 16px; /* Yazı boyutu */
+}
+
+.mat-select-placeholder {
+  color: rgba(0, 0, 0, 0.5); /* Placeholder rengi */
+}
+
+.mat-select-value {
+  color: #333; /* Seçilen değer rengi */
+}
+
+.mat-option.mat-selected {
+  background-color: rgba(13, 153, 213, 0.1); /* Seçili opsiyon rengi */
+}
+
+.mat-option.mat-selected:hover {
+  background-color: rgba(
+    13,
+    153,
+    213,
+    0.2
+  ); /* Hover sırasında seçili opsiyon rengi */
+}
+:host::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #fff;
+}
+
+
+.skeleton-loader {
+  background: #f0f0f0; /* Gri arka plan */
+  border-radius: 8px; /* Köşe yuvarlama */
+  height: 100%; /* Yüksekliği, kapsayıcı öğeye göre ayarla */
+  width: 100%; /* Genişliği, kapsayıcı öğeye göre ayarla */
+  position: relative; /* Pozisyonlama için */
+  overflow: hidden; /* Taşmayı önlemek için */
+  height: 65vh;
+
+}
+
+.skeleton-loader::before {
+  content: ''; /* İçerik boş */
+  position: absolute; /* Pozisyonlama için */
+  top: 0; /* Üstten sıfır konum */
+  left: -100%; /* Soldan -100% konum */
+  width: 100%; /* Genişlik: %100 */
+  height: 100%; /* Yükseklik: %100 */
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); /* Gradient arka plan */
+  animation: shimmer 1.5s infinite; /* Shimmer animasyonu */
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%); /* Başlangıçta soldan -100% */
+  }
+  100% {
+    transform: translateX(100%); /* Sonunda sağa 100% */
+  }
+}

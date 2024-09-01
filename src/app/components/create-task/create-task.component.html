@@ -1,0 +1,44 @@
+<h2 mat-dialog-title *ngIf="!data;">Create Task</h2> <h2 mat-dialog-title *ngIf="data;">Update Task</h2>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required>
+      <mat-error *ngIf="taskForm.controls['title'].hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+      <mat-error *ngIf="taskForm.controls['description'].hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Assigned To</mat-label>
+      <input matInput formControlName="assignedTo" required>
+      <mat-error *ngIf="taskForm.controls['assignedTo'].hasError('required')">Assigned To is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{data ? getStatus(data.status): "Select Status"}}</mat-label>
+      <mat-select formControlName="status" required >
+        <mat-option value="0">Backlog</mat-option>
+        <mat-option value="1">Active</mat-option>
+        <mat-option value="2">Testing</mat-option>
+        <mat-option value="3">Acceptance</mat-option>
+      </mat-select>
+      <mat-error *ngIf="taskForm.controls['status'].hasError('required')">Title is required</mat-error>
+    </mat-form-field>
+
+    <div class="metaData"  *ngIf="data">
+      Task Created By : {{data.fromName}}
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" color="accent" (click)="onCancel(false)">Cancel</button>
+    <button mat-raised-button type="submit" color="primary" *ngIf="!data">Create</button>
+    <button mat-raised-button type="button" color="warn" (click)="delete()" *ngIf="data">Delete</button>
+    <button mat-raised-button type="submit" color="primary" *ngIf="data">Update</button>
+  </mat-dialog-actions>
+</form>

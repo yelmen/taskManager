@@ -1,0 +1,96 @@
+<div class="tasks-container">
+  <div class="filter-sort-container">
+    <h1>Ineo Task Manager</h1>
+    <!-- Search Bar -->
+    <mat-form-field class="searchBox" appearance="fill">
+      <mat-label>Filter</mat-label>
+      <input matInput (input)="applyFilter($event)" placeholder="Filter By Assignee">
+    </mat-form-field>
+
+    <!-- Sorting Dropdown -->
+    <mat-form-field appearance="fill">
+      <mat-label>Sorting</mat-label>
+      <mat-select (selectionChange)="applySorting($event.value)">
+        <mat-option value="dateAsc">Date (Increment)</mat-option>
+        <mat-option value="dateDesc">Date (Descrement)</mat-option>
+        <mat-option value="alphaAsc">Alphabetical (A-Z)</mat-option>
+        <mat-option value="alphaDesc">Alphabetical (Z-A)</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Task Lists -->
+  <div class="tasks-list-container">
+    <div class="main-container">
+      <h2>Backlog</h2>
+      <div  [ngClass]="{'skeleton-loader': !isLoaded, 'example-list': isLoaded}"   cdkDropList #backlogList="cdkDropList" [cdkDropListData]="filteredBacklog"
+        [cdkDropListConnectedTo]="[activeList, testingList, acceptanceList]" (cdkDropListDropped)="drop($event)">
+        <div class="task-box" (click)="openCreateTaskDialog(task)" cdkDrag *ngFor="let task of filteredBacklog">
+          <p class="taskTitle">{{task.title}}</p>
+          <span class="taskAssigned">
+            <mat-icon>person</mat-icon>
+            <span>{{task.assignedTo}}</span>
+          </span>
+          <span class="iconSpan">
+            <mat-icon>update</mat-icon>
+            {{task.lastUpdateDate | date: 'HH:mm, d MMMM yyyy'}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <h2>Active</h2>
+      <div  [ngClass]="{'skeleton-loader': !isLoaded, 'example-list': isLoaded}"   cdkDropList #activeList="cdkDropList" [cdkDropListData]="filteredActive"
+        [cdkDropListConnectedTo]="[backlogList, testingList, acceptanceList]" (cdkDropListDropped)="drop($event)">
+        <div class="task-box" (click)="openCreateTaskDialog(task)" cdkDrag *ngFor="let task of filteredActive">
+          <p class="taskTitle">{{task.title}}</p>
+          <span class="taskAssigned">
+            <mat-icon>person</mat-icon>
+            <span>{{task.assignedTo}}</span>
+          </span>
+          <span class="iconSpan">
+            <mat-icon>update</mat-icon>
+            {{task.lastUpdateDate | date: 'HH:mm, d MMMM yyyy'}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <h2>Testing</h2>
+      <div  [ngClass]="{'skeleton-loader': !isLoaded, 'example-list': isLoaded}"   cdkDropList #testingList="cdkDropList" [cdkDropListData]="filteredTesting"
+        [cdkDropListConnectedTo]="[backlogList, activeList, acceptanceList]" (cdkDropListDropped)="drop($event)">
+        <div class="task-box" (click)="openCreateTaskDialog(task)" cdkDrag *ngFor="let task of filteredTesting">
+          <p class="taskTitle">{{task.title}}</p>
+          <span class="taskAssigned">
+            <mat-icon>person</mat-icon>
+            <span>{{task.assignedTo}}</span>
+          </span>
+          <span class="iconSpan">
+            <mat-icon>update</mat-icon>
+            {{task.lastUpdateDate | date: 'HH:mm, d MMMM yyyy'}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <h2>Acceptance</h2>
+      <div [ngClass]="{'skeleton-loader': !isLoaded, 'example-list': isLoaded}"   cdkDropList #acceptanceList="cdkDropList" [cdkDropListData]="filteredAcceptance"
+        [cdkDropListConnectedTo]="[backlogList, activeList, testingList]" (cdkDropListDropped)="drop($event)">
+        <div class="task-box-completed" (click)="openCreateTaskDialog(task)" cdkDrag *ngFor="let task of filteredAcceptance">
+          <p class="taskTitle">{{task.title}}</p>
+          <span class="taskAssigned">
+            <mat-icon>person</mat-icon>
+            <span>{{task.assignedTo}}</span>
+          </span>
+          <span class="iconSpan">
+            <mat-icon>update</mat-icon>
+            {{task.lastUpdateDate | date: 'HH:mm, d MMMM yyyy'}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
