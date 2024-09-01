@@ -13,7 +13,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'tasks', component: TaskDashboardComponent },
-      { path: '', redirectTo: 'tasks', pathMatch: 'full' }
+      { path: '', redirectTo: '/taskManager/dashboard/tasks', pathMatch: 'full' }
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
