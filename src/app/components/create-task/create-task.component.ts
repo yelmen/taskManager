@@ -25,8 +25,8 @@ export class CreateTaskComponent implements OnInit {
       status: [data?.status || 0, Validators.required],
       createDate: [data?.createDate || new Date()],
       lastUpdateDate: [data?.lastUpdateDate || new Date()],
-      fromId: [''], // Bu alanları boş başlatıyoruz
-      fromName: [''], // Bu alanları boş başlatıyoruz
+      fromId: [''], 
+      fromName: [''], 
     });
   }
 
@@ -57,10 +57,7 @@ export class CreateTaskComponent implements OnInit {
   onCancel(event: any): void {
     this.dialogRef.close(event);
   }
-  // <mat-option value="0">Backlog</mat-option>
-  // <mat-option value="1">Active</mat-option>
-  // <mat-option value="2">Testing</mat-option>
-  // <mat-option value="3">Acceptance</mat-option>
+
 
   getStatus(status: number): string {
     switch (status) {
@@ -73,7 +70,7 @@ export class CreateTaskComponent implements OnInit {
       case 3:
         return 'Acceptance';
       default:
-        return 'Please Select Status'; // Eksik return ifadesi eklendi
+        return 'Please Select Status'; 
     }
   }
 }
